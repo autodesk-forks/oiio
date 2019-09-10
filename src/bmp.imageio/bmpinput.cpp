@@ -209,7 +209,7 @@ BmpInput::read_native_scanline(int subimage, int miplevel, int y, int z,
         }
     }
     if (m_dib_header.bpp == 4) {
-        for (unsigned int i = 0, j = 0; j + 6 < m_spec.scanline_bytes();
+        for (unsigned int i = 0, j = 0; j < m_spec.scanline_bytes();
              ++i, j += 6) {
             uint8_t mask     = 0xF0;
             mscanline[j]     = m_colortable[(fscanline[i] & mask) >> 4].r;
