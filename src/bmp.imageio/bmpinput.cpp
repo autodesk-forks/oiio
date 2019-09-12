@@ -215,6 +215,8 @@ BmpInput::read_native_scanline(int subimage, int miplevel, int y, int z,
             mscanline[j]     = m_colortable[(fscanline[i] & mask) >> 4].r;
             mscanline[j + 1] = m_colortable[(fscanline[i] & mask) >> 4].g;
             mscanline[j + 2] = m_colortable[(fscanline[i] & mask) >> 4].b;
+            if (j + 5 >= mscanline.size())
+                break;
             mask             = 0x0F;
             mscanline[j + 3] = m_colortable[fscanline[i] & mask].r;
             mscanline[j + 4] = m_colortable[fscanline[i] & mask].g;
