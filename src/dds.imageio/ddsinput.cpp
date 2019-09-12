@@ -387,7 +387,10 @@ DDSInput::internal_seek_subimage(int cubeface, int miplevel, unsigned int& w,
             }
             continue;
         }
-        for (int i = 0; i < miplevel; i++) {
+        // On the target cube face seek to the selected mip level.  On previous faces
+        // seek past all levels.
+        int seekLevel = (j == cubeface) ? miplevel : m_dds.mipmaps;
+        for (int i = 0; i < seekLevel; i++) {
             if (m_dds.fmt.flags & DDS_PF_FOURCC)
                 // only check for DXT1 - all other formats have same block size
                 len = squish::GetStorageRequirements(w, h,
